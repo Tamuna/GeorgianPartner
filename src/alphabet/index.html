@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>Georgian Partner</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Gentle alphabet practice</p>
+          <p class="subtitle">Learn the alphabet slowly with pictures, simple words, and a short reading practice.</p>
+        </div>
+        <div class="hero-actions">
+          <a href="../../index.html" class="secondary-button back-link">Back to menu</a>
+          <button id="reset-progress" class="secondary-button" type="button">Reset progress</button>
+        </div>
+      </header>
+
+      <section class="lesson-card" aria-live="polite">
+        <div class="lesson-meta">
+          <span id="lesson-badge" class="pill">Lesson 1 of 2</span>
+          <span id="progress-badge" class="pill">0% complete</span>
+        </div>
+
+        <h2 id="lesson-title">Step 1: Look at the letters</h2>
+        <p id="lesson-instructions">Look at the pictures and say the sounds slowly.</p>
+
+        <div id="letter-grid" class="letter-grid"></div>
+        <div id="meaning-box" class="meaning-box"></div>
+
+        <p id="feedback" class="feedback" role="status"></p>
+
+        <div class="actions">
+          <button id="next-step" class="primary-button" type="button">Next step</button>
+          <button id="skip-step" class="secondary-button" type="button">Skip for now</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

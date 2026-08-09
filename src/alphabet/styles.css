@@ -1,0 +1,254 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f7f7f7 0%, #eef7ff 100%);
+  color: #1f2937;
+}
+
+main {
+  width: min(100%, 920px);
+  margin: 0 auto;
+  background: white;
+  padding: 1.25rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: #e2e8f0;
+  color: #0f172a;
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.eyebrow {
+  margin: 0 0 0.25rem;
+  color: #2563eb;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.75rem;
+}
+
+.subtitle {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.lesson-card {
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  background: #f8fbff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.lesson-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.letter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0.75rem 0;
+}
+
+.letter-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid #e5e7eb;
+}
+
+.letter-card img {
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  margin-bottom: 0.35rem;
+}
+
+.letter-card span {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.letter-card small {
+  margin-top: 0.2rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.speaker-button {
+  margin-top: 0.45rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 1rem;
+}
+
+.meaning-box {
+  margin: 0.75rem 0;
+}
+
+.meaning-panel {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #1e3a8a;
+}
+
+.meaning-panel p {
+  margin: 0.2rem 0;
+}
+
+.practice-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.primary-button {
+  background: #2563eb;
+  color: white;
+}
+
+.secondary-button {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.feedback {
+  min-height: 1.4rem;
+  margin-top: 0.75rem;
+  font-weight: 600;
+  color: #0f766e;
+}
+
+#word-list {
+  padding-left: 1.2rem;
+}
+
+#word-list li {
+  margin-bottom: 0.5rem;
+}
+
+.word-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid #dbeafe;
+}
+
+.word-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.mode-heading {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.mode-description {
+  margin: 0 0 0.75rem;
+  color: #4b5563;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  main {
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: 12px;
+  }
+
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .letter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .word-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
