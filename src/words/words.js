@@ -1,33 +1,57 @@
 const vocabPairs = window.wordsData || [];
+let ttsBusy = false;
 
-function speakText(text) {
-  if (!('speechSynthesis' in window)) {
-    return;
-  }
+function speakGeorgian(text) {
+  if (!text || !('speechSynthesis' in window)) return;
+  if (ttsBusy) return;
+  ttsBusy = true;
 
-  const speakNow = () => {
+  const trySpeak = () => {
+    const synth = window.speechSynthesis;
+    synth.cancel();
+
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'ka-GE';
-    utterance.rate = 0.8;
-    utterance.pitch = 1;
-    utterance.volume = 1;
+    utterance.rate = 0.85;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
 
-    const voices = window.speechSynthesis.getVoices();
-    const preferredVoice = voices.find((voice) => /ka|ge/i.test(voice.lang)) || voices[0] || null;
-    if (preferredVoice) {
-      utterance.voice = preferredVoice;
-    }
+    const voices = synth.getVoices() || [];
+    const preferred =
+      voices.find((voice) => /^ka/i.test(voice.lang)) ||
+      voices.find((voice) => /ka|ge/i.test(voice.lang)) ||
+      voices[0];
 
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utterance);
+    if (preferred) utterance.voice = preferred;
+
+    utterance.onend = () => {
+      ttsBusy = false;
+    };
+    utterance.onerror = () => {
+      ttsBusy = false;
+    };
+
+    synth.speak(utterance);
   };
 
-  if (window.speechSynthesis.getVoices().length === 0) {
-    window.setTimeout(speakNow, 250);
+  const synth = window.speechSynthesis;
+  const voices = synth.getVoices();
+  if (voices && voices.length) {
+    trySpeak();
     return;
   }
 
-  speakNow();
+  const onVoicesChanged = () => {
+    synth.removeEventListener('voiceschanged', onVoicesChanged);
+    window.setTimeout(trySpeak, 50);
+  };
+
+  synth.addEventListener('voiceschanged', onVoicesChanged);
+
+  window.setTimeout(() => {
+    synth.removeEventListener('voiceschanged', onVoicesChanged);
+    trySpeak();
+  }, 1500);
 }
 
 function createSpeakerButton(label, text) {
@@ -38,7 +62,7 @@ function createSpeakerButton(label, text) {
   button.innerHTML = '🔊';
   button.addEventListener('click', (event) => {
     event.stopPropagation();
-    speakText(text);
+    speakGeorgian(text);
   });
   return button;
 }
