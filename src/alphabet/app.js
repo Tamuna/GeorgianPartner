@@ -27,17 +27,29 @@ function speakText(text, onStatus = () => {}) {
     return;
   }
 
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'ka-GE';
-  utterance.rate = 0.8;
-  const voices = window.speechSynthesis.getVoices();
-  const preferredVoice = voices.find((voice) => /ka|ge/i.test(voice.lang)) || voices[0];
-  if (preferredVoice) {
-    utterance.voice = preferredVoice;
+  const speakNow = () => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ka-GE';
+    utterance.rate = 0.8;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = window.speechSynthesis.getVoices();
+    const preferredVoice = voices.find((voice) => /ka|ge/i.test(voice.lang)) || voices[0] || null;
+    if (preferredVoice) {
+      utterance.voice = preferredVoice;
+    }
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+  };
+
+  if (window.speechSynthesis.getVoices().length === 0) {
+    window.setTimeout(speakNow, 250);
+    return;
   }
 
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(utterance);
+  speakNow();
 }
 
 const lessonBadge = document.getElementById('lesson-badge');
